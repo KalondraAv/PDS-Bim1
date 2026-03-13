@@ -15,9 +15,9 @@ Evite repetir código dentro do main.
 STATIC dentro do PUBLIC CLASS
 */
 
-public class etapa02{
+public class Etapa02{
 	
-    static double calcularT( Double vh , Double hTrab){  //método serve para CALCULAR o VALOR TOTAL do serviço
+    static double calcularT(double vh , double hTrab){  //método serve para CALCULAR o VALOR TOTAL do serviço
     return vh * hTrab;
    }
     
@@ -50,4 +50,5 @@ public class etapa02{
         teclado.close();
         
      }
+
 }
