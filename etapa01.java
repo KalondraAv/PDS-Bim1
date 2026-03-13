@@ -1,7 +1,7 @@
-package projProg;
+package projProg; /** código feito na escola **/
 import java.util.Scanner;
 
-public class etapa01 {
+public class Etapa01 {
 
 	public static void main(String[] args) {
 		/**
@@ -15,18 +15,15 @@ public class etapa01 {
 		Scanner teclado = new Scanner(System.in);
 		
 		String nomeC;
-		String nomeT;
 		String prob;
-		float valorHora;
+		double valorHora;
 		double valorTotal;
 		int qtdeHora;
 		
 		System.out.print("-- REGISTRO DE MANUTENÇÃO TÉCNICA --\nInforme seu nome: ");
 		nomeC = teclado.nextLine();
-		System.out.print("Olá, "+nomeC+"! Quem lhe atendeu? ");
-		nomeT = teclado.nextLine();
-		System.out.print("Problema identificado: ");
-		prob =teclado.nextLine();
+		System.out.print("Olá, "+nomeC+"! Informe o problema identificado: ");
+		prob = teclado.nextLine();
 		System.out.print("Certo. Digite o valor da hora de serviço: R$ ");
 		valorHora = teclado.nextFloat();
 		System.out.print("Informe a quantidade de horas trabalhadas: ");
@@ -38,3 +35,4 @@ public class etapa01 {
 		}
 
 }
+
