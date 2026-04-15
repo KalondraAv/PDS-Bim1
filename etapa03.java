@@ -1,69 +1,67 @@
-package revisao;
-import java.util.Scanner;
-
-/*
+/* ETAPAS 3 E 4
 Criar a classe OrdemServico
 Adicionar atributos (cliente, descrição, valorHora, horas)
 Criar um construtor
 Implementar calcularTotal()
 Implementar exibirResumo()
+*
+Adicionar atributo status
+Criar método alterarStatus()
+Criar métodos para atualizar horas e valor
+Garantir que o resumo reflita sempre o estado atual
 
-Pense na ordem como algo do mundo real.
-Ela possui dados (atributos) e comportamentos (métodos).
-O cálculo do total ainda deve existir — mas agora deve estar dentro da própria classe.
+Sempre que um atributo muda, o objeto precisa continuar consistente.
+Teste alterações e veja se o cálculo continua correto.
 */
 
-public class OrdemServico {
+public class OrdemServico { //CLASSE PRINCIPAL - Associação com Cliente
 
-    String nomeC;
-    String prob;
-    double valorHora;
-    double qtdeHora;
-
-    //MÉTODO CONSTRUTOR 
-    public OrdemServico(String nomeC, String prob, double valorHora, double qtdeHora) {
-        this.nomeC = nomeC;
-        this.prob = prob;
+    private Cliente cliente; //OBJETO Cliente
+    private String descricao;
+    private double valorHora;
+    private double qtdeHora;
+    private String status;
+    
+    // MÉTODO CONSTRUTOR - Controle de estado
+    public OrdemServico(Cliente cliente, String descricao, double valorHora, double qtdeHora) {
+        this.cliente = cliente;
+        this.descricao = descricao;
         this.valorHora = valorHora;
         this.qtdeHora = qtdeHora;
+        this.status = "Aberto"; //Padrão
     }
 
-    //MÉTODO calcularTotal() - DENTRO da classe OrdemServico
+    // MÉTODO calcularTotal() - Não armazena, sempre recalcula
     public double calcularTotal() {
         return valorHora * qtdeHora;
     }
+    
+    // MÉTODO alterarStatus() - Permite modoficar o estado do objeto - Sem validação ou verificação
+    public void alterarStatus(String novoStatus) {
+        	this.status = novoStatus; //método para comparar STRINGS por CONTEÚDO
+    }
 
-    //MÉTODO exibirResumo()
-    public void exibirResumo() {
-        double valorTotal = calcularTotal();
+    // MÉTODO atualizarValorHora() - Permite modificar o estado do objeto
+    public void atualizarValorHora(double novoValor) {
+        	this.valorHora = novoValor;
 
-        System.out.println("\n--- RESUMO DO SERVIÇO ---");
-        System.out.println("\nDigite seu nome: " + nomeC);
-        System.out.println("Problema identificado: " + prob);
-        System.out.println("Valor da hora: R$ " + valorHora);
-        System.out.println("Horas trabalhadas: " + qtdeHora);
-        System.out.println("Total a pagar: R$ " + valorTotal);
     }
     
-    public class Main {
-    	public static void main(String[] args) {
-    		Scanner teclado = new Scanner(System.in);
-    		
-    		System.out.print("--- REGISTRO DE SERVIÇO ---\n");
-    		System.out.print("Digite seu nome: ");
-    		String nomeC = teclado.nextLine();
-    		System.out.print("Informe o problema identificado: ");
-    		String prob = teclado.nextLine();
-    		System.out.print("Informe o valor da hora de serviço: ");
-    		double valorHora = teclado.nextDouble();
-    		System.out.print("Informe a quantidade de hora(s) necessária(s): ");
-    		double qtdeHora = teclado.nextDouble();
-    		
-    		OrdemServico OrSer = new //nova instância da classe
-    				OrdemServico(nomeC, prob, valorHora, qtdeHora);
-    		OrSer.exibirResumo(); //OBJETO criado A PARTIR da classe OrdemServico
-    		
-    		teclado.close();
-    	}
+    // MÉTODO atualizarQtdeHora() - Permite modificar o estado do objeto - Sem validação ou verificação
+    public void atualizarQtdeHora(double novaQtde) {
+        	this.qtdeHora = novaQtde;
+    }
+    
+    // MÉTODO exibirResumo() - O resumo acomapanha sempre o estado atual
+    public void exibirResumo() {
+        System.out.println("\n--- Resumo da Ordem de Serviço ---");
+        System.out.println("Cliente: " + cliente.getNome());
+        System.out.println("Telefone: " + cliente.getTelefone());
+        System.out.println("Email: " + cliente.getEmail());
+        System.out.println("Problema: " + descricao);
+        System.out.println("Valor da hora: " + valorHora);
+        System.out.println("Quantidade de horas trabalhadas: " + qtdeHora);
+        System.out.println("Status: " + status);
+        System.out.println("Total: " + calcularTotal());
     }
 }
